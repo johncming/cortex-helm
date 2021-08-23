@@ -5,10 +5,9 @@ resources:
   - consul-svc.yaml
   - minio.yaml
   - minio-svc.yaml
-  # - configmap.yaml
-  # - ingester.yaml
-  # - ingester-headless-svc.yaml
-  # - ingester-svc.yaml
+  - ingester.yaml
+  - ingester-headless-svc.yaml
+  - ingester-svc.yaml
   # - distributor.yaml
   # - distributor-headless-svc.yaml
   # - distributor-svc.yaml

@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
   - configmap.yaml
   - ingester.yaml
+  - ingester-headless-svc.yaml
+  - ingester-svc.yaml
   - consul.yaml
   - consul-svc.yaml
   - distributor.yaml

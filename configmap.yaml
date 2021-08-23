@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cortex
+  namespace: my
+data:
+  cortex.yaml: |
+    auth_enabled: false
+
+    distributor:
+      shard_by_all_labels: true
+      pool:
+        health_check_ingesters: true
+
+    ingester_client:
+      grpc_client_config:
+        # Configure the client to allow messages up to 100MB.
+        max_recv_msg_size: 104857600
+        max_send_msg_size: 104857600
+        grpc_compression: gzip
+
+    ingester:
+      lifecycler:
+        # We want to start immediately.
+        join_after: 0
+        final_sleep: 0s
+        num_tokens: 512
+
+        ring:
+          kvstore:
+            store: consul
+            consul:
+              host: consul:8500
+          replication_factor: 3
+
+    blocks_storage:
+      backend: s3
+
+      tsdb:
+        dir: /tmp/cortex-tsdb-ingester
+        ship_interval: 1m
+        block_ranges_period: [ 2h []
+        retention_period: 3h
+        max_exemplars: 5000
+
+      bucket_store:
+        sync_dir: /tmp/cortex-tsdb-querier
+        consistency_delay: 5s
+
+        index_cache:
+          backend: memcached
+          memcached:
+            addresses: dns+memcached:11211
+
+        chunks_cache:
+          backend: memcached
+          memcached:
+            addresses: dns+memcached:11211
+
+        metadata_cache:
+          backend: memcached
+          memcached:
+            addresses: dns+memcached:11211
+
+      s3:
+        endpoint:          minio:9000
+        bucket_name:       cortex-tsdb
+        access_key_id:     cortex
+        secret_access_key: supersecret
+        insecure:          true
+
+    storage:
+      engine: blocks
+
+    limits:
+      # Limit max query time range to 31d
+      max_query_length: 744h

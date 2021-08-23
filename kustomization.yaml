@@ -8,5 +8,6 @@ resources:
   - consul.yaml
   - consul-svc.yaml
   - minio.yaml
+  - minio-svc.yaml
   - distributor.yaml
 

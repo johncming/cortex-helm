@@ -1,14 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - configmap.yaml
-  - ingester.yaml
-  - ingester-headless-svc.yaml
-  - ingester-svc.yaml
   - consul.yaml
   - consul-svc.yaml
   - minio.yaml
   - minio-svc.yaml
+  - configmap.yaml
+  - ingester.yaml
+  - ingester-headless-svc.yaml
+  - ingester-svc.yaml
   - distributor.yaml
   - distributor-headless-svc.yaml
   - distributor-svc.yaml

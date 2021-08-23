@@ -38,7 +38,7 @@ spec:
               protocol: TCP
       volumes:
         - name: config
-          secret:
-            secretName: my-cortex
+          configMap:
+            name: cortex
         - name: storage
           emptyDir: {}

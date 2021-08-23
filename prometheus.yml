@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 5s
+  external_labels:
+    scraped_by: prometheus
+
+      
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+        labels:
+          cluster: 'docker-compose'
+          namespace: 'tsdb-blocks-storage-s3'
+
+remote_write:
+  - url: http://127.0.0.1:8080/api/v1/push
+

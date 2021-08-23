@@ -10,4 +10,6 @@ resources:
   - minio.yaml
   - minio-svc.yaml
   - distributor.yaml
+  - distributor-headless-svc.yaml
+  - distributor-svc.yaml
 

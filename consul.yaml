@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: consul
+  name: consul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: consul
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: consul
+    spec:
+      containers:
+      - image: consul:1.9.8
+        name: consul
+        ports:
+        - containerPort: 8500
+        args: [ "agent", "-dev" ,"-client=0.0.0.0", "-log-level=info" ]
+

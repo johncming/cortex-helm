@@ -39,7 +39,7 @@ data:
       tsdb:
         dir: /tmp/cortex-tsdb-ingester
         ship_interval: 1m
-        block_ranges_period: [ 2h []
+        block_ranges_period: [ 2h ]
         retention_period: 3h
         max_exemplars: 5000
 

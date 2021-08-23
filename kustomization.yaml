@@ -5,4 +5,5 @@ resources:
   - ingester.yaml
   - consul.yaml
   - consul-svc.yaml
+  - distributor.yaml
 

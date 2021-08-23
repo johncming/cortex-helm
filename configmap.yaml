@@ -69,9 +69,9 @@ data:
 
       s3:
         endpoint:          minio:9000
-        bucket_name:       cortex-tsdb
-        access_key_id:     cortex
-        secret_access_key: supersecret
+        bucket_name:       tsdb
+        access_key_id:     miniokey
+        secret_access_key: miniokey
         insecure:          true
 
     storage:

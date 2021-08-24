@@ -22,7 +22,6 @@ ingester:
     join_after: 0
     final_sleep: 0s
     num_tokens: 512
-    interface_names: ["en7"]
 
     ring:
       kvstore:

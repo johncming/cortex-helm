@@ -16,3 +16,7 @@ configMapGenerator:
   - name: cortex
     files:
       - cortex.yaml
+  - name: prometheus
+    files:
+      - prometheus.yml
+

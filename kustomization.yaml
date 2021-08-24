@@ -1,10 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  # dependences
   - consul.yaml
   - consul-svc.yaml
   - minio.yaml
   - minio-svc.yaml
+  - prometheus.yaml
+  # cortex
   - ingester.yaml
   - ingester-headless-svc.yaml
   - ingester-svc.yaml

@@ -8,6 +8,11 @@ distributor:
   shard_by_all_labels: true
   pool:
     health_check_ingesters: true
+  ring:
+    kvstore:
+      store: consul
+      consul:
+        host: consul:8500
 
 ingester_client:
   grpc_client_config:
@@ -72,3 +77,4 @@ storage:
 limits:
   # Limit max query time range to 31d
   max_query_length: 744h
+  ingestion_rate_strategy: global

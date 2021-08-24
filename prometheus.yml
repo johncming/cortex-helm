@@ -13,5 +13,5 @@ scrape_configs:
           namespace: 'tsdb-blocks-storage-s3'
 
 remote_write:
-  - url: http://10.104.147.98:8080/api/v1/push
+  - url: http://distributor:8080/api/v1/push
 

@@ -41,8 +41,8 @@ blocks_storage:
   tsdb:
     dir: /tmp/cortex-tsdb-ingester
     ship_interval: 1m
-    block_ranges_period: [ 2h ]
-    retention_period: 3h
+    block_ranges_period: [ 5m ]
+    retention_period: 5m
     max_exemplars: 5000
 
   bucket_store:

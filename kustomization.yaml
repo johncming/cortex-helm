@@ -19,6 +19,8 @@ resources:
   - querier-headless-svc.yaml
   - store-gateway.yaml
   - compactor.yaml
+  - memcached.yaml
+  - memcached-svc.yaml
 
 configMapGenerator:
   - name: cortex

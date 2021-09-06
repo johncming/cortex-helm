@@ -14,6 +14,11 @@ resources:
   - distributor.yaml
   - distributor-headless-svc.yaml
   - distributor-svc.yaml
+  - querier.yaml
+  - querier-svc.yaml
+  - querier-headless-svc.yaml
+  - store-gateway.yaml
+  - compactor.yaml
 
 configMapGenerator:
   - name: cortex

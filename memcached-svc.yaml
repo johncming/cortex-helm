@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: memcached
+  labels:
+    app.kubernetes.io/component: memcached
+spec:
+  type: ClusterIP
+  ports:
+    - port: 11211
+      protocol: TCP
+      name: tcp
+      targetPort: tcp
+  selector:
+    app.kubernetes.io/component: memcached

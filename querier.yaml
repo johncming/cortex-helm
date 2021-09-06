@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: querier
+  labels:
+    app.kubernetes.io/component: querier
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: querier
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: querier
+    spec:
+      containers:
+        - name: cortex
+          image: "quay.io/cortexproject/cortex:v1.10.0"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=querier"
+            - "-config.file=/etc/cortex/cortex.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cortex
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: gossip
+              containerPort: 7946
+              protocol: TCP
+      volumes:
+        - name: config
+          configMap:
+            name: cortex

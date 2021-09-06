@@ -78,3 +78,29 @@ limits:
   # Limit max query time range to 31d
   max_query_length: 744h
   ingestion_rate_strategy: global
+
+store_gateway:
+  sharding_enabled: true
+  sharding_ring:
+    replication_factor: 1
+    kvstore:
+      store: consul
+      consul:
+        host: consul:8500
+
+querier:
+  query_ingesters_within: 3h
+  store_gateway_addresses: storage-gateway:9095
+
+compactor:
+  compaction_interval: 30s
+  data_dir:            /tmp/cortex-compactor
+  consistency_delay:   1m
+  sharding_enabled:    true
+  cleanup_interval:    1m
+  tenant_cleanup_delay: 1m
+  sharding_ring:
+    kvstore:
+      store: consul
+      consul:
+        host: consul:8500

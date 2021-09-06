@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compactor
+  labels:
+    app.kubernetes.io/component: compactor
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: compactor
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: compactor
+    spec:
+      containers:
+        - name: cortex
+          image: "quay.io/cortexproject/cortex:v1.10.0"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=compactor"
+            - "-config.file=/etc/cortex/cortex.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cortex
+            - name: storage
+              mountPath: "/data"
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: gossip
+              containerPort: 7946
+              protocol: TCP
+      volumes:
+        - name: config
+          configMap:
+            name: cortex
+        - name: storage
+          emptyDir: {}
